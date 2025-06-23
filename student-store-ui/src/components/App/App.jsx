@@ -37,7 +37,67 @@ function App() {
   };
 
   const handleOnCheckout = async () => {
+    setIsCheckingOut(true);
+    setError(null);
+    if (!userInfo.name.trim()&& !userInfo.email.trim()) {
+      setError("Please enter your name");
+      return;
+    }
+
+    const orderItems = Object.entries(cart).map(([productId, quantity]) =>{
+      const product = products.find((p)=>
+         p.id === parseInt(productId)
+      )
+
+      return{
+        productId: parseInt(productId),
+        quantity: quantity,
+        price: product.price
+      }
+
+
+    })
+
+    const total = orderItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+
+    const orderData = {
+      customer:  userInfo.name.trim(),
+      email: userInfo.email.trim(),
+      status: "pending",
+      total: total,
+      orderItems: orderItems
+    }
+
+    try {
+      const response = await axios.post("http://localhost:3000/orders/create", orderData);
+      setOrder(response.data);
+      setCart({});
+      setUserInfo({ name: "", dorm_number: "" });
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsCheckingOut(false);
+    }
+
+
+
   }
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setIsFetching(true);
+      try {
+        const response = await axios.get("http://localhost:3000/products");
+        setProducts(response.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsFetching(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
 
   return (

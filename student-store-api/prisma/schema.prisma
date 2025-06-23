@@ -21,16 +21,30 @@ model Product {
   price Float
   image_url String @unique
   category String
+
+  items OrderItem[]
 }
 
 model Order {
   id Int @id @default(autoincrement())
-  customer String 
-  total Float
+  customer String @default("Unknown Value")
+  email String  @default("Unknown Value")
   status String
   createdAt DateTime @default(now())
+  total Float
+  items OrderItem[]
+
 }
 
 model OrderItem{
   id Int @id @default(autoincrement())
+  orderId  Int 
+  productId Int
+  quantity Int
+  price Float
+
+  // relations
+
+  order Order @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
 }
