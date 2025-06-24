@@ -8,6 +8,7 @@ import ProductDetail from "../ProductDetail/ProductDetail";
 import NotFound from "../NotFound/NotFound";
 import { removeFromCart, addToCart, getQuantityOfItemInCart, getTotalItemsInCart } from "../../utils/cart";
 import "./App.css";
+import PastOrders from "../PastOrders/PastOrders";
 
 function App() {
 
@@ -145,7 +146,7 @@ function App() {
               }
             />
             <Route
-              path="/:productId"
+              path="/products/:productId"
               element={
                 <ProductDetail
                   cart={cart}
@@ -155,6 +156,12 @@ function App() {
                   removeFromCart={handleOnRemoveFromCart}
                   getQuantityOfItemInCart={handleGetItemQuantity}
                 />
+              }
+            />
+            <Route
+              path="/orders"
+              element={
+                <PastOrders/>
               }
             />
             <Route
@@ -169,6 +176,8 @@ function App() {
               }
             />
           </Routes>
+          
+          
         </main>
       </BrowserRouter>
     </div>

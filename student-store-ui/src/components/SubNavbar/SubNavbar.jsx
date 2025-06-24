@@ -1,5 +1,5 @@
 import "./SubNavbar.css"
-
+import {Link} from "react-router-dom"
 function SubNavbar({ activeCategory, setActiveCategory, searchInputValue, handleOnSearchInputChange }) {
 
 
@@ -21,6 +21,10 @@ function SubNavbar({ activeCategory, setActiveCategory, searchInputValue, handle
             />
             <i className="material-icons">search</i>
           </div>
+          <div className="nav-links">
+            <Link to="/" className="nav-link">Home</Link>
+            <Link to="/orders" className="nav-link">Past Orders</Link>
+          </div>
         </div>
 
         <div className="row">
@@ -30,6 +34,7 @@ function SubNavbar({ activeCategory, setActiveCategory, searchInputValue, handle
                 <button onClick={() => setActiveCategory(cat)}>{cat}</button>
               </li>
             ))}
+           
           </ul>
         </div>
         

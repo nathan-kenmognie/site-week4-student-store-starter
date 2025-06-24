@@ -48,7 +48,10 @@ exports.getOrders = async(req,res) =>{
     try {
         const orders = await prisma.order.findMany({
             include:{
-                items:true
+                items:{
+                    include:{
+                        product:true
+                    }                }
             }
         })
 
@@ -68,7 +71,11 @@ exports.getOrderById = async( req,res) =>{
                 id: parseInt(id)
             },
             include: {
-                items: true 
+                items: {
+                    include:{
+                        product:true
+                    }
+                } 
             }
         })
         
