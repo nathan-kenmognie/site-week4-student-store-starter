@@ -4,10 +4,10 @@ const orderController = require('../controlers/orderControler.js');
 
 router.post('/create', orderController.createOrder);
 router.get("/",orderController.getOrders)
+router.get("/:email/email",orderController.getOrderByEmail)
 
 router.get("/:id",orderController.getOrderById)
 router.get('/:id/total', orderController.getOrderTotal)
-router.get("/:email/email",orderController.getOrderByEmail)
 router.put('/:id/update',orderController.updateOrder)
 
 

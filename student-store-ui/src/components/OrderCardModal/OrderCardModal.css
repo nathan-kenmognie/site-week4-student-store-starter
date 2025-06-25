@@ -1,0 +1,74 @@
+.OrderCardModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.OrderCardModal .modal-content {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.OrderCardModal .modal-content .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.OrderCardModal .modal-content .close-button:hover {
+    color: #000;
+}
+
+.OrderCardModal .modal-content h2 {
+    margin-top: 0;
+    color: #343a40;
+}
+
+.OrderCardModal .modal-content h3 {
+    color: #495057;
+    margin-top: 1.5rem;
+}
+
+.OrderCardModal .modal-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.OrderCardModal .modal-content ul li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.OrderCardModal .modal-content ul li:last-child {
+    border-bottom: none;
+}
+
+.OrderCardModal .modal-content p {
+    margin: 0.5rem 0;
+    color: #495057;
+}
+
+.OrderCardModal .modal-content .total {
+    font-weight: 600;
+    color: #28a745;
+    font-size: 1.1rem;
+}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import axios from "axios";
 import SubNavbar from "../SubNavbar/SubNavbar";
 import Sidebar from "../Sidebar/Sidebar";
@@ -23,6 +23,9 @@ function App() {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [error, setError] = useState(null);
   const [order, setOrder] = useState(null);
+  const [pastOrders, setPastOrders] = useState([]);
+  const [filteredOrders, setFilteredOrders] = useState([])
+
 
   // Toggles sidebar
   const toggleSidebar = () => setSidebarOpen((isOpen) => !isOpen);
@@ -36,6 +39,57 @@ function App() {
   const handleOnSearchInputChange = (event) => {
     setSearchInputValue(event.target.value);
   };
+
+
+
+  const handleSearchType = (searchValue, currentPath) =>{
+    try {
+      if (currentPath === "/orders"){
+        if(searchValue.trim()){
+          handleOrderSearchByEmail(searchValue)
+
+        }else{
+          setFilteredOrders(pastOrders)
+        }
+      }else{
+        setSearchInputValue(searchValue)
+      }
+    } catch (error) {
+      console.log(error.message)
+    }
+
+  }
+
+  const handleOrderSearchByEmail = async(email) =>{
+    try {
+
+      const response = await fetch(`http://localhost:3000/orders/${email}/email`)
+      const orders = await response.json()
+      setFilteredOrders(orders)
+      return orders
+
+    } catch (error) {
+      console.log(error.message)
+      setFilteredOrders([])
+    }
+    
+
+  }
+  
+  const fetchAllOrders = async() =>{
+    try {
+      const response = await fetch(`http://localhost:3000/orders`)
+      const orders = await response.json()
+      setFilteredOrders(orders)
+      setPastOrders(orders)
+      
+    } catch (error) {
+      console.log(error.message)
+      
+    }
+
+  }
+  
 
   const handleOnCheckout = async () => {
     setIsCheckingOut(true);
@@ -98,6 +152,7 @@ function App() {
     };
 
     fetchProducts();
+    fetchAllOrders();
   }, []);
 
 
@@ -127,6 +182,7 @@ function App() {
             setActiveCategory={setActiveCategory}
             searchInputValue={searchInputValue}
             handleOnSearchInputChange={handleOnSearchInputChange}
+            handleSearchType={handleSearchType}
           />
           <Routes>
             <Route
@@ -161,7 +217,9 @@ function App() {
             <Route
               path="/orders"
               element={
-                <PastOrders/>
+                <PastOrders
+                orders= {filteredOrders}
+                />
               }
             />
             <Route

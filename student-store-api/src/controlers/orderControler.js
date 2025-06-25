@@ -93,16 +93,29 @@ exports.getOrderById = async( req,res) =>{
 exports.getOrderByEmail = async(req,res) =>{
     try {
         const email = req.params.email;
+        console.log('Searching for email:', email);
 
-        const orders = await prisma.order.findMany()
+        const orders = await prisma.order.findMany({
+            where: {
+                email: {
+                    contains:email,
+                    mode: 'insensitive'
+                }  
+            },
+            include: {
+                items: {
+                    include: {
+                        product: true
+                    }
+                }
+            }
+        });
 
-        const filteredData = orders.filter((order) =>{
-            return order.email === email
-        })
+        console.log('Found orders:', orders.length);
 
-        if (!filteredData) return res.status(404).json({ error: 'Order not found' });
+        if (orders.length===0) return res.status(404).json({ error: 'Order not found' });
         
-        res.json(filteredData)
+        res.json(orders)
     } catch (error) {
         console.log(error.message)
     }
