@@ -5,14 +5,32 @@ import NotFound from "../NotFound/NotFound";
 import { formatPrice } from "../../utils/format";
 import "./ProductDetail.css";
 
-function ProductDetail({ addToCart, removeFromCart, getQuantityOfItemInCart }) {
+function ProductDetail({ products, addToCart, removeFromCart, getQuantityOfItemInCart }) {
   
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState(null);
 
-  
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      setIsFetching(true);
+      setError(null);
+      try {
+        const response = products.find((product)=> product.id===parseInt(productId))
+        setProduct(response);
+        setIsFetching(false)
+      } catch (error) {
+        console.log(error.message)    
+        setError(error)     
+      }
+    }
+    fetchProduct()
+  },[products,productId])
+
+
+
 
 
   if (error) {
