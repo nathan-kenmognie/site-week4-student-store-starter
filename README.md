@@ -98,8 +98,15 @@ Deployed Application (optional): [Student Store Deployed Site](ADD_LINK_HERE)
 
 
 ### Walkthrough Video
+Video 1:
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/28ecd9b0c96643d5bbb8e64eb9f6914b?sid=4b923da3-a53c-4d3a-a32d-9b3205a2b0ac" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/a83761cbd0db46b8945e13063f225b58?sid=98900437-1e55-4666-afe9-645dc6dd4d0e" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+Video 2:
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/379cc5c6412a4e1388c64f69c7ce4578?sid=94bb1851-a9bb-4e8e-b747-4bd089aebd08" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+
+Video 3:
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/726fa4b482b34fcaa991ff457bb66cc5?sid=adad9501-b0e2-4894-b221-3d20bb7cfd9b" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
 ### Reflection
 
