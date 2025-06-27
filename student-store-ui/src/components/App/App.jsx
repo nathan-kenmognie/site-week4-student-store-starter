@@ -129,6 +129,7 @@ function App() {
       setOrder(response.data);
       setCart({});
       setUserInfo({ name: "", dorm_number: "" });
+      setSidebarOpen(false)
     } catch (err) {
       setError(err.message);
     } finally {
